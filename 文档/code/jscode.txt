@@ -1,0 +1,21 @@
+//弹出窗口
+	show:function(tit,uri,wh,hh,par){
+	    var wid_heig=getwinsize(par);
+		var bl =false;
+		if(wh == null || (wid_heig[0]>0 && wid_heig[0]<=wh)){
+			wh =wid_heig[0]-50;
+			bl = true;
+		}
+		if(hh==null||(wid_heig[1]>0 && wid_heig[1]<=hh)){
+			hh= wid_heig[1]-50;
+			bl=true;
+		}
+		var newuri=uri;
+		if(par == null ||par == "undefined" || par == undefined){
+			par = window.parent;
+		}
+		par.ymPrompt.win({width:wh,height:hh,title:tit,maxBtn:true,minBtn:true,iframe:{id:'myIf',name:'myIf',src:newuri},useSlide:false,showShadow:true});
+		if(bl){
+			par.ymPrompt.max();
+		}
+	},

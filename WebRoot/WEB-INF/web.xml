@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee   http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+	<!-- 定义不同的ROOTKEY -->
+	<context-param>
+		<param-name>webAppRootKey</param-name>
+		<param-value>bams</param-value>
+	</context-param>
+	<!--加载Log4j -->
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>/WEB-INF/classes/resource/log/console.properties</param-value>
+	</context-param>
+	<context-param>
+		<param-name>log4jRefreshInterval</param-name>
+		<!--Spring默认刷新Log4j配置文件的间隔,单位为millisecond -->
+		<param-value>60000</param-value>
+	</context-param>
+	<!-- 加载spring容器 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/classes/resource/springconf/spring-config-web.xml</param-value>
+	</context-param>
+
+	<!-- Level Filter cims 系统过滤 -->
+	<filter>
+		<filter-name>ErpLevelFilter</filter-name>
+		<filter-class>com.eazytec.web.filter.servletfilter.ErpLevelFilter</filter-class>
+		<init-param>
+			<param-name>checkLevel</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>encodeReq</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>encodeResp</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>ErpLevelFilter</filter-name>
+		<url-pattern>/erp/*</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>struts2</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.FilterDispatcher</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>*.action</url-pattern>
+	</filter-mapping>
+	<listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>com.eazytec.web.listener.InitErp</listener-class>
+	</listener>
+
+	<servlet>
+		<servlet-name>DBPoolInfomation</servlet-name>
+		<servlet-class>org.logicalcobwebs.proxool.admin.servlet.AdminServlet</servlet-class>
+	</servlet>
+	<!-- 加载dwr -->
+	<servlet>
+		<servlet-name>dwr-invoker</servlet-name>
+		<servlet-class>org.directwebremoting.servlet.DwrServlet</servlet-class>
+		<init-param>
+			<!-- dwr测试页面，上线时设置为false -->
+			<param-name>debug</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<!-- dwr拦截 -->
+		<init-param>
+			<param-name>org.directwebremoting.extend.Remoter</param-name>
+			<param-value>com.eazytec.web.filter.dwrRemoter.DWRRemoter</param-value>
+		</init-param>
+		<init-param>
+			<param-name>config-base</param-name>
+			<param-value>/WEB-INF/classes/resource/dwrconf/dwr_base.xml</param-value>
+		</init-param>
+		<init-param>
+			<param-name>config-service</param-name>
+			<param-value>/WEB-INF/classes/resource/dwrconf/dwr_service.xml</param-value>
+		</init-param>
+		<init-param>
+			<!-- 防止其他域提交访问 -->
+			<param-name>crossDomainSessionSecurity</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<!-- 压缩js -->
+		<init-param>
+			<param-name>scriptCompressed</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<!-- jfreechat配置 -->
+	<servlet>
+		<servlet-name>DisplayChart</servlet-name>
+		<servlet-class>org.jfree.chart.servlet.DisplayChart</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>CheckSessionServlet</servlet-name>
+		<servlet-class>com.eazytec.web.servlet.user.CheckSessionServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>UserLoginServlet</servlet-name>
+		<servlet-class>com.eazytec.web.servlet.user.UserLoginServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ShowSysImageInfoServlet</servlet-name>
+		<servlet-class>com.eazytec.web.servlet.file.ShowSysImageInfoServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>DownloadFileServlet</servlet-name>
+		<servlet-class>com.eazytec.web.servlet.file.DownloadFileServlet</servlet-class>
+	</servlet>
+	<!-- fck使用 -->
+	<servlet>
+		<servlet-name>ConnectorServlet</servlet-name>
+		<servlet-class>net.fckeditor.connector.ConnectorServlet</servlet-class>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	<servlet>
+		<servlet-name>UploadFileServlet</servlet-name>
+		<servlet-class>com.eazytec.web.servlet.file.UploadFileServlet</servlet-class>
+	</servlet>
+	<!-- 生成验证码 -->
+	<servlet>
+		<servlet-name>CreateValidCodeServlet</servlet-name>
+		<servlet-class>com.eazytec.web.servlet.user.CreateValidCodeServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>CompanyRegServlet</servlet-name>
+		<servlet-class>com.eazytec.web.servlet.user.CompanyRegServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<description>人员导入</description>
+		<servlet-name>Employee_import</servlet-name>
+		<servlet-class>com.eazytec.web.servlet.excel.Employee_import</servlet-class>
+	</servlet>
+
+	<servlet>
+		<description>流程部署</description>
+		<servlet-name>ProcessDeploy</servlet-name>
+		<servlet-class>com.eazytec.web.servlet.process.ProcessDeploy</servlet-class>
+	</servlet>
+
+	<servlet>
+		<description>资源查看</description>
+		<servlet-name>ProcessResource</servlet-name>
+		<servlet-class>com.eazytec.web.servlet.process.ProcessResource</servlet-class>
+	</servlet>
+	<servlet>
+		<description>流程追踪</description>
+		<servlet-name>ProcessTrace</servlet-name>
+		<servlet-class>com.eazytec.web.servlet.process.ProcessTrace</servlet-class>
+	</servlet>
+
+	<servlet>
+		<description>生成PojoAndDao</description>
+		<servlet-name>CreatePojoAndDao</servlet-name>
+		<servlet-class>com.eazytec.web.servlet.code.CreatePojoAndDaoServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>生成DwrAndService</description>
+		<servlet-name>CreateDwrAndService</servlet-name>
+		<servlet-class>com.eazytec.web.servlet.code.CreateDwrAndServiceServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<description>生成页面</description>
+		<servlet-name>CreatePage</servlet-name>
+		<servlet-class>com.eazytec.web.servlet.code.CreatePageServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ConnectorServlet</servlet-name>
+		<!-- Do not wrap this line otherwise Glassfish will fail to load this file -->
+		<url-pattern>/fckeditor/editor/filemanager/connectors/*</url-pattern>
+	</servlet-mapping>
+
+	<!--fck end -->
+
+
+	<servlet-mapping>
+		<servlet-name>DBPoolInfomation</servlet-name>
+		<url-pattern>/projectdbinfoView.info</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>dwr-invoker</servlet-name>
+		<url-pattern>/dwr/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DisplayChart</servlet-name>
+		<url-pattern>/picture.xhtml</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CheckSessionServlet</servlet-name>
+		<url-pattern>/checkSession.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UserLoginServlet</servlet-name>
+		<url-pattern>/login.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ShowSysImageInfoServlet</servlet-name>
+		<url-pattern>/showimg.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DownloadFileServlet</servlet-name>
+		<url-pattern>/download.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UploadFileServlet</servlet-name>
+		<url-pattern>/upload.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CreateValidCodeServlet</servlet-name>
+		<url-pattern>/validcode.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CompanyRegServlet</servlet-name>
+		<url-pattern>/companyreg.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>Employee_import</servlet-name>
+		<url-pattern>/emp_import.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>ProcessDeploy</servlet-name>
+		<url-pattern>/processDeploy.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>ProcessResource</servlet-name>
+		<url-pattern>/processResource.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>ProcessTrace</servlet-name>
+		<url-pattern>/processTrace.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>CreatePojoAndDao</servlet-name>
+		<url-pattern>/createPojoAndDao.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CreateDwrAndService</servlet-name>
+		<url-pattern>/createDwrAndService.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CreatePage</servlet-name>
+		<url-pattern>/createPage.do</url-pattern>
+	</servlet-mapping>
+	
+	<!--润乾报表的引擎配置 -->
+
+<!-- <servlet>
+        <servlet-name>com.runqian.report.view.DataServlet</servlet-name>
+        <servlet-class>com.runqian.report.view.DataServlet</servlet-class>
+        <init-param>
+            <param-name>license</param-name>
+            <param-value>/WEB-INF/lib/v355.dat</param-value>
+        </init-param>
+        <init-param>
+            <param-name>reportFileHome</param-name>
+            <param-value>report_files</param-value>
+        </init-param>
+        <init-param>
+            <param-name>JNDIPrefix</param-name>
+            <param-value>java:comp/env</param-value>
+		</init-param> 
+		
+        <init-param>
+            <param-name>dataSource</param-name>
+            
+            <param-value>bams,MYSQL,GBK,0</param-value>
+           
+            <param-value>oracle,oracle,GBK,0</param-value>
+            
+        </init-param>
+       
+        <init-param>
+            <param-name>olapDataSource</param-name>
+            <param-value/>
+        </init-param>
+        <init-param>
+            <param-name>cachedParamsTimeout</param-name>
+            <param-value>120</param-value>
+        </init-param>
+        <init-param>
+            <param-name>cachedReportDir</param-name>
+            <param-value>/WEB-INF/log</param-value>
+        </init-param>
+        <init-param>
+            <param-name>cachedReportTimeout</param-name>
+            <param-value>120</param-value>
+        </init-param>
+        <init-param>
+            <param-name>maxConcurrentForBigReport</param-name>
+            <param-value>2</param-value>
+        </init-param>
+        <init-param>
+            <param-name>logConfig</param-name>
+            <param-value>/WEB-INF/runqianReportLog.properties</param-value>
+        </init-param>
+        <init-param>
+            <param-name>appUrlPrefix</param-name>
+            <param-value/>
+        </init-param>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>com.runqian.report.view.excel.ExcelReportServlet</servlet-name>
+        <servlet-class>com.runqian.report.view.excel.ExcelReportServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>com.runqian.report.view.word.WordReportServlet</servlet-name>
+        <servlet-class>com.runqian.report.view.word.WordReportServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>com.runqian.report.view.excel.ConfigExcelServlet</servlet-name>
+        <servlet-class>com.runqian.report.view.excel.ConfigExcelServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>com.runqian.report.view.excel.SaveAsExcelServlet</servlet-name>
+        <servlet-class>com.runqian.report.view.excel.SaveAsExcelServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>com.runqian.report.view.pdf.PdfReportServlet</servlet-name>
+        <servlet-class>com.runqian.report.view.pdf.PdfReportServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>com.runqian.report.control.PostAppletDataServlet</servlet-name>
+        <servlet-class>com.runqian.report.control.PostAppletDataServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>com.runqian.report.control.SaveAsExcelServlet</servlet-name>
+        <servlet-class>com.runqian.report.control.SaveAsExcelServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>com.runqian.report.view.SetReportParamsServlet</servlet-name>
+        <servlet-class>com.runqian.report.view.SetReportParamsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>com.runqian.report.view.html.GraphServlet</servlet-name>
+        <servlet-class>com.runqian.report.view.html.GraphServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>com.runqian.report.view.html.PrintServlet</servlet-name>
+        <servlet-class>com.runqian.report.view.html.PrintServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>com.runqian.base.util.ReadJavaScriptServlet</servlet-name>
+        <servlet-class>com.runqian.base.util.ReadJavaScriptServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>com.runqian.report.input.SaveDataServlet</servlet-name>
+        <servlet-class>com.runqian.report.input.SaveDataServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>com.runqian.report.input.SaveToLocalServlet</servlet-name>
+        <servlet-class>com.runqian.report.input.SaveToLocalServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>com.runqian.report.input.SelectUploadFile</servlet-name>
+        <servlet-class>com.runqian.report.input.SelectUploadFile</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>com.runqian.report.input.UploadFile2DBServlet</servlet-name>
+        <servlet-class>com.runqian.report.input.UploadFile2DBServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>com.runqian.report.input.SaveSheetsServlet</servlet-name>
+        <servlet-class>com.runqian.report.input.SaveSheetsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>com.runqian.report.input.UploadExcelServlet</servlet-name>
+        <servlet-class>com.runqian.report.input.UploadExcelServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>com.runqian.report.input.SelectExcelFileServlet</servlet-name>
+        <servlet-class>com.runqian.report.input.SelectExcelFileServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>com.runqian.report.view.text.TextFileServlet</servlet-name>
+        <servlet-class>com.runqian.report.view.text.TextFileServlet</servlet-class>
+    </servlet>
+ 
+    
+    <servlet-mapping>
+        <servlet-name>com.runqian.report.view.excel.ExcelReportServlet</servlet-name>
+        <url-pattern>/servlet/com.runqian.report.view.excel.ExcelReportServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>com.runqian.report.view.excel.ConfigExcelServlet</servlet-name>
+        <url-pattern>/servlet/com.runqian.report.view.excel.ConfigExcelServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>com.runqian.report.view.excel.SaveAsExcelServlet</servlet-name>
+        <url-pattern>/servlet/SaveAsExcel</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>com.runqian.report.view.pdf.PdfReportServlet</servlet-name>
+        <url-pattern>/servlet/com.runqian.report.view.pdf.PdfReportServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>com.runqian.report.view.DataServlet</servlet-name>
+        <url-pattern>/servlet/com.runqian.report.view.DataServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>com.runqian.report.view.SetReportParamsServlet</servlet-name>
+        <url-pattern>/setReportParams</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>com.runqian.report.control.SaveAsExcelServlet</servlet-name>
+        <url-pattern>/servlet/com.runqian.report.control.SaveAsExcelServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>com.runqian.report.control.PostAppletDataServlet</servlet-name>
+        <url-pattern>/servlet/com.runqian.report.control.PostAppletDataServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>com.runqian.report.view.html.GraphServlet</servlet-name>
+        <url-pattern>/servlet/com.runqian.report.view.html.GraphServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>com.runqian.report.view.html.PrintServlet</servlet-name>
+        <url-pattern>/servlet/com.runqian.report.view.html.PrintServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>com.runqian.base.util.ReadJavaScriptServlet</servlet-name>
+        <url-pattern>/servlet/com.runqian.base.util.ReadJavaScriptServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>com.runqian.report.view.word.WordReportServlet</servlet-name>
+        <url-pattern>/servlet/com.runqian.report.view.word.WordReportServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>com.runqian.report.input.SaveDataServlet</servlet-name>
+        <url-pattern>/servlet/com.runqian.report.input.SaveDataServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>com.runqian.report.input.SaveToLocalServlet</servlet-name>
+        <url-pattern>/servlet/com.runqian.report.input.SaveToLocalServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>com.runqian.report.input.SelectUploadFile</servlet-name>
+        <url-pattern>/servlet/com.runqian.report.input.SelectUploadFile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>com.runqian.report.input.UploadFile2DBServlet</servlet-name>
+        <url-pattern>/servlet/com.runqian.report.input.UploadFile2DBServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>com.runqian.report.input.SaveSheetsServlet</servlet-name>
+        <url-pattern>/servlet/com.runqian.report.input.SaveSheetsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>com.runqian.report.input.UploadExcelServlet</servlet-name>
+        <url-pattern>/servlet/com.runqian.report.input.UploadExcelServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>com.runqian.report.input.SelectExcelFileServlet</servlet-name>
+        <url-pattern>/servlet/com.runqian.report.input.SelectExcelFileServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>com.runqian.report.view.text.TextFileServlet</servlet-name>
+        <url-pattern>/servlet/com.runqian.report.view.text.TextFileServlet</url-pattern>
+    </servlet-mapping>
+ -->
+	<session-config>
+		<session-timeout>35</session-timeout>
+	</session-config>
+	<welcome-file-list>
+		<welcome-file>login.jsp</welcome-file>
+	</welcome-file-list>
+	<error-page>
+		<exception-type>java.lang.Exception</exception-type>
+		<location>/error.jsp</location>
+	</error-page>
+	<error-page>
+		<exception-type>java.lang.Error</exception-type>
+		<location>/error.jsp</location>
+	</error-page>
+	<error-page>
+		<exception-type>java.lang.RuntimeException</exception-type>
+		<location>/error.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/error.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/error.jsp</location>
+	</error-page>
+
+
+	<login-config>
+		<auth-method>BASIC</auth-method>
+	</login-config>
+	<jsp-config>
+		<taglib>
+			<taglib-uri>http://www.eazytec.com/taglibs/filetag</taglib-uri>
+			<taglib-location>/WEB-INF/fileprocess.tld</taglib-location>
+		</taglib>
+		<taglib>
+			<taglib-uri>http://www.eazytec.com/taglibs/buttontag</taglib-uri>
+			<taglib-location>/WEB-INF/button.tld</taglib-location>
+		</taglib>
+
+		<taglib>
+			<taglib-uri>http://www.eazytec.com/taglibs/tabletag</taglib-uri>
+			<taglib-location>/WEB-INF/table.tld</taglib-location>
+		</taglib>
+	</jsp-config>
+</web-app>

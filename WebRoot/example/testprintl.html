@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<title>打印设置</title> 
+<link rel="stylesheet" media="screen" type="text/css" href="http://www.chinasvf.com/Webs/public/default/css/bank.css" /> 
+<!-- 打印样式 --> 
+<link rel="stylesheet" media="print" type="text/css" href="http://www.chinasvf.com/Webs/public/default/css/bankprint.css" /> 
+<script language="JavaScript"> 
+    var hkey_root,hkey_path,hkey_key; 
+    hkey_root="HKEY_CURRENT_USER"; 
+    hkey_path="\\Software\\Microsoft\\Internet Explorer\\PageSetup\\"; 
+    //配置网页打印的页眉页脚为空 
+    function pagesetup_null(){   
+        try{ 
+            var RegWsh = new ActiveXObject("WScript.Shell");           
+            hkey_key="header";           
+            RegWsh.RegWrite(hkey_root+hkey_path+hkey_key,""); 
+            hkey_key="footer"; 
+            RegWsh.RegWrite(hkey_root+hkey_path+hkey_key,""); 
+            //&b 第&p页/共&P页 &b 
+        }catch(e){} 
+    } 
+    //配置网页打印的页眉页脚为默认值 
+    function pagesetup_default(){ 
+        try{ 
+            var RegWsh = new ActiveXObject("WScript.Shell"); 
+            hkey_key="header"; 
+            RegWsh.RegWrite(hkey_root+hkey_path+hkey_key,"&w&b页码，&p/&P") 
+            hkey_key="footer"; 
+            RegWsh.RegWrite(hkey_root+hkey_path+hkey_key,"&u&b&d"); 
+        }catch(e){} 
+    }   
+     //打印选区内容 
+    function doPrint() { 
+        pagesetup_null(); 
+        bdhtml=window.document.body.innerHTML; 
+        sprnstr="<!--startprint-->"; 
+        eprnstr="<!--endprint-->"; 
+        prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17); 
+        prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr)); 
+        window.document.body.innerHTML=prnhtml; 
+        window.print(); 
+    } 
+    //打印页面预览 
+    function printpreview(){ 
+        pagesetup_null(); 
+        //wb.printing.header = "居左显示&b居中显示&b居右显示页码，第&p页/共&P页"; 
+        //wb.printing.footer = "居左显示&b居中显示&b居右显示页码，第&p页/共&P页"; 
+        try{ 
+            wb.execwb(7,1); 
+        }catch(e){ 
+            alert("您的浏览器不支持此功能,请选择'文件'->'打印预览'"); 
+        } 
+    } 
+    //打印 
+    function prints(){ 
+        pagesetup_null(); 
+        //wb.printing.header = "居左显示&b居中显示&b居右显示页码，第&p页/共&P页"; 
+        //wb.printing.footer = "居左显示&b居中显示&b居右显示页码，第&p页/共&P页"; 
+        try{ 
+            wb.execwb(6,1); 
+        }catch(e){ 
+            alert("您的浏览器不支持此功能"); 
+        } 
+    } 
+</script> 
+</head> 
+<body> 
+<OBJECT classid="CLSID:8856F961-340A-11D0-A96B-00C04FD705A2" id="wb" width="0" height="0"></OBJECT> 
+<div id="bankwrap"> 
+  <div class="Noprint"><a href="http://www.chinasvf.com" style="cursor:pointer; color:#0000FF">返回首页</a></div> 
+  <div style="text-align:right"> 
+    <p class="Noprint"> 
+        <span style="cursor:pointer; color:#0000FF" onclick="javascript:window.open('http://www.chinasvf.com/Webs/Share/printhelp')" class="Noprint">打印帮助</span> 
+        <span style="cursor:pointer; color:#0000FF" onclick="printpreview();">打印预览</span> 
+        <span style="cursor:pointer; color:#0000FF" onclick="prints();" class="Noprint">打印</span> 
+    </p> 
+  </div> 
+  <div class="banktitle">内容</div> 
+</div> 
+</body> 
+</html> 
+

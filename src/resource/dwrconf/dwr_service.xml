@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC
+    "-//GetAhead Limited//DTD Direct Web Remoting 1.0//EN"
+    "http://www.getahead.ltd.uk/dwr/dwr10.dtd">
+<dwr>
+	<allow>
+		<create javascript="dwrHrmEmployeeService" creator="spring">
+			<param name="beanName" value="dwrHrmEmployeeService"/>
+		</create>
+		<create javascript="dwrSysProcessService" creator="spring">
+			<param name="beanName" value="dwrSysProcessService"/>
+		</create>
+		<create javascript="dwrCommonService" creator="spring">
+			<param name="beanName" value="dwrCommonService"/>
+		</create>
+		<create javascript="dwrWorkArrangeService" creator="spring">
+			<param name="beanName" value="dwrWorkArrangeService"/>
+		</create>
+		<create javascript="dwrOaNewsService" creator="spring">
+		    <param name="beanName" value="dwrOaNewsService"/>
+		</create>
+		<create javascript="dwrOACompanyResourcesService" creator="spring">
+			<param name="beanName" value="dwrOACompanyResourcesService"/>
+		</create>
+		<create javascript="dwrOfficeResourcesService" creator="spring">
+			<param name="beanName" value="dwrOfficeResourcesService"/>
+		</create>
+		<create javascript="dwrOaCommunicationService" creator="spring">
+		    <param name="beanName" value="dwrOaCommunicationService"/>
+		</create>
+		<create javascript="dwrMoblieSmsService" creator="spring">
+		    <param name="beanName" value="dwrMoblieSmsService"/>
+		</create>
+		<create javascript="dwrMailService" creator="spring">
+		    <param name="beanName" value="dwrMailService"/>
+		</create>
+		<create javascript="dwrApproveProcessService" creator="spring">
+		    <param name="beanName" value="dwrApproveProcessService"/>
+		</create>
+		<create javascript="dwrPersonalOfficeSerivce" creator="spring">
+		 <param name="beanName" value="dwrPersonalOfficeSerivce"></param>
+		</create>
+		<create javascript="dwrPersonalProcessSerivce" creator="spring">
+		 <param name="beanName" value="dwrPersonalProcessSerivce"></param>
+		</create>
+		<create javascript="dwrNetdiskService" creator="spring">
+		 <param name="beanName" value="dwrNetdiskService"></param>
+		</create>
+		<create javascript="dwrOADesktopService" creator="spring">
+		 <param name="beanName" value="dwrOADesktopService"></param>
+		</create>
+		<create javascript="dwrSysComponentService" creator="spring">
+		   <param name="beanName" value="dwrSysComponentService"/>
+		</create>
+	</allow>
+</dwr>

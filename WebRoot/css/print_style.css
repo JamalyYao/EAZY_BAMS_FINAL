@@ -1,0 +1,146 @@
+/**单个记录打印**/
+.printTableRow{
+	BORDER-RIGHT:  #000  1px solid;
+	BORDER-TOP:  #000  1px solid;
+	BORDER-LEFT:  #000  1px solid;
+	BORDER-BOTTOM:  #000  1px solid;
+	BORDER-COLLAPSE: collapse;
+	text-align:center;
+	cellSpacing:0;
+	cellPadding:2px; 
+}
+
+.printTableRow tr td{
+	BORDER-RIGHT:  #000  1px solid;
+	BORDER-TOP:  #000  1px solid;
+	BORDER-LEFT:  #000  1px solid;
+	BORDER-BOTTOM:  #000  1px solid;
+	BORDER-COLLAPSE: collapse;
+	cellSpacing:0;
+	cellPadding:2px; 
+}
+
+/*多个记录打印*/
+.printTableRowMore{
+	BORDER-RIGHT:  #000  1px solid;
+	BORDER-TOP:  #000  1px solid;
+	BORDER-LEFT:  #000  1px solid;
+	BORDER-BOTTOM:  #000  1px solid;
+	BORDER-COLLAPSE: collapse;
+	text-align:center;
+	cellSpacing:0;
+	cellPadding:2px; 
+}
+
+.printTableRowMore td{
+	BORDER-RIGHT:  #000  1px solid;
+	BORDER-TOP:  #000  1px solid;
+	BORDER-LEFT:  #000  1px solid;
+	BORDER-BOTTOM:  #000  1px solid;
+	BORDER-COLLAPSE: collapse;
+	line-height:25px;
+	cellSpacing:0;
+	cellPadding:2px; 
+   	font-size: 16px;
+   	word-break : break-all;
+}
+
+.printTableRow tr{ 
+	line-height: 50px; 
+}
+
+.printTableRow td{
+	BORDER: #BDBCBC 1px solid;
+}
+
+.printTableRow_tr{
+ 	text-align:center;
+ 	line-height: 20px;
+}
+
+.printTableRow_td{
+	PADDING-RIGHT: 6px;
+	BACKGROUND-POSITION: 50% top;
+	PADDING-LEFT: 6px;
+	BACKGROUND-REPEAT: repeat-x;
+	WHITE-SPACE: nowrap; 
+	LETTER-SPACING: 1px; 
+	line-height: 30px; 
+   	font-size: 24px;
+	text-align:center;
+	font-weight: bold;
+	color:#000 ;
+}
+
+.printFontSign{
+	font-weight:bold;
+	font-size: 20px;
+	line-height: 30px; 
+	white-space: nowrap; 
+	padding-top: 20px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.printTitle{
+	font-weight:bold;
+	font-size: 32px;
+	text-align:center;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-top: 15px;
+	padding-bottom: 50px;
+}
+
+.printFontSign2{
+	font-weight:bold;
+	font-size: 13px;
+	line-height: 30px; 
+	white-space: nowrap; 
+	padding-top: 20px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.printBtn{
+	text-align: right;
+	padding-right: 30px;
+	padding-top: 10px;
+}
+
+/**单条单据**/
+.printTable_tr{
+  font-weight: bold;
+  font-size: 20px;
+  width: 20%;
+}
+.printTable_td{
+  text-align:left;
+  padding-left:5px;
+  font-size: 20px;
+  width: 30%;
+  word-break : break-all;
+}
+
+
+
+/*其他地方*/
+.printStyle{
+
+}
+.printStyle table{
+width:95%;
+}
+
+.printStyle table th{
+font-size: 20px;
+height:60px;
+}
+.printStyle table td{
+font-size: 18px;
+}
+
+.linediv_pt{
+	border-bottom:#4C4839 2px dotted;
+	width:95%;
+}

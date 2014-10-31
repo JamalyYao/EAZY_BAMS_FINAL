@@ -1,0 +1,40 @@
+	
+	/**
+	 * 流程部署
+	 * @param context
+	 * @param request
+	 * @param modelId
+	 * @return
+	 */
+	public ResultBean deployProcessModelById(ServletContext context,HttpServletRequest request,String modelId){
+		try {
+	      Model modelData = repositoryService.getModel(modelId);
+	      ObjectNode modelNode = (ObjectNode) new ObjectMapper().readTree(repositoryService.getModelEditorSource(modelData.getId()));
+	      byte[] bpmnBytes = null;
+
+	      BpmnModel model = new BpmnJsonConverter().convertToBpmnModel(modelNode);
+	      bpmnBytes = new BpmnXMLConverter().convertToXML(model);
+
+	      String processName = modelData.getName() + ".bpmn20.xml";
+	      repositoryService.createDeployment().name(modelData.getName()).addString(processName, new String(bpmnBytes)).deploy();
+	      
+	      return WebUtilWork.WebResultPack(null);
+		}catch (Exception e) {
+		  e.printStackTrace();
+	      return new ResultBean(false,"流程部署失败！");
+	    }
+	}
+	
+	
+	
+	/**
+	 * 删除模型
+	 * @param context
+	 * @param request
+	 * @param modelId
+	 * @return
+	 */
+	public ResultBean deleteProcessModelById(ServletContext context,HttpServletRequest request,String modelId){
+		repositoryService.deleteModel(modelId);
+		return WebUtilWork.WebResultPack(null);
+	}

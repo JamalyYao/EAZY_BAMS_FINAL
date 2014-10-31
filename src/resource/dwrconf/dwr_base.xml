@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC
+    "-//GetAhead Limited//DTD Direct Web Remoting 1.0//EN"
+    "http://www.getahead.ltd.uk/dwr/dwr10.dtd">
+
+<dwr>
+	<allow>
+		<convert converter="bean" match="com.eazytec.common.module.ResultBean"/>
+		<convert converter="bean" match="com.eazytec.common.pages.Pager"/>
+		<convert converter="bean" match="com.eazytec.common.util.CalenderBean"/>
+		<convert converter="bean" match="com.eazytec.common.util.WorkRecordBean"/>
+		<convert converter="bean" match="java.lang.Exception"/>
+		<convert converter="bean" match="com.eazytec.common.module.UserMethodsInfo"/>
+		<convert converter="bean" match="com.eazytec.common.module.ApproveProcessValueBean"/>
+		<convert converter="bean" match="com.eazytec.common.module.OnlineHrmEmployeeBean"/>
+		<convert converter="bean" match="com.eazytec.common.module.WorkRecordPageBean"/>
+		<convert converter="bean" match="com.eazytec.common.module.ApproveTypeCountBean"/>
+		<convert converter="bean" match="com.eazytec.common.module.WorkRecordTempBean"/>
+		<convert converter="bean" match="com.eazytec.common.module.ProdcutProviderBean"/>
+		<convert converter="bean" match="com.eazytec.common.module.SellWareHouseBean"/>
+		<convert converter="bean" match="com.eazytec.common.module.SettlementDetailBean"></convert>
+		<convert converter="bean" match="com.eazytec.common.module.SettlementBean"></convert>
+		<convert converter="bean" match="com.eazytec.common.module.InComeOrOutRecordBean"></convert>
+		<convert converter="bean" match="com.eazytec.common.module.CustomerStatisticsEmpcountBean"/>
+		<convert converter="bean" match="com.eazytec.common.module.CustomerStatisticsDetailBean"/>
+		<convert converter="bean" match="com.eazytec.common.module.CheckCustMaxCodeBean"/>
+		<convert converter="bean" match="java.lang.StackTraceElement"/>
+		
+		
+		
+		<!-- 包装流程相关的实体类 -->
+		<convert converter="bean" match="com.eazytec.common.module.ApproveProcessBean"/>
+		<convert converter="bean" match="com.eazytec.common.module.ProcessUserBean"/>
+		<convert converter="bean" match="com.eazytec.common.module.ProcessInstanceBean"/>
+		<convert converter="bean" match="com.eazytec.common.module.TaskTodoBean"/>
+		<convert converter="bean" match="com.eazytec.common.module.ProcessModelBean"/>
+		<convert converter="bean" match="com.eazytec.common.module.HistoricProcessInstanceBean"/>
+		<convert converter="bean" match="com.eazytec.common.module.HistoricTaskInstanceBean"/>
+		
+		<convert converter="bean" match="com.eazytec.common.activiti.Variable"/>
+		
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaCarMaintain"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.HrmWorkarea"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.SysCountry"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.SysProvince"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.SysDistrict"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.SysAttachmentInfo"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.SysMethodInfo"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.SysMethodHelp"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.SysCompanyMethods"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.SysMsg"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.SysHelp"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.SysLog"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.SysError"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.SysException"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.SysUserInfo"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.SysColumnControl"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.SysImageInfo"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.HrmPost"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.HrmEmployee"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.SysCompanyInfo"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.SysUserMethods"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.SysUserGroup"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.SysUserGroupDetail"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.SysRole"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.SysRoleDetail"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.SysRoleBind"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.SysLibraryInfo"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.SysLibraryStandard"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.SysUserView"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.HrmDepartment"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.SysConfig"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaWorkPlan"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaWarehouse"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaWareType"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaWaretypeRange"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaNews"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaBoardroom"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaAnnouncement"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaNotice"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaWorkLog"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaForms"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaAdversaria"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaMeetapply"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaJournalsType"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaJournals"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaSummary"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaCalender"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaCar"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaCarUse"/>
+    	<convert converter="hibernate3" match="com.eazytec.core.pojo.OaCarApply"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaAlbum"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaPhoto"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaCarMainten"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaChatters"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaChatGroups"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaChatShare"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaGoods"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaGoodsBr"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaSmsSend"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaSmsInbox"/>
+	    <convert converter="hibernate3" match="com.eazytec.core.pojo.OaBook"/>
+	    <convert converter="hibernate3" match="com.eazytec.core.pojo.OaRegulations"/>
+	    <convert converter="hibernate3" match="com.eazytec.core.pojo.OaBookBr"/>
+	    <convert converter="hibernate3" match="com.eazytec.core.pojo.OaForums"/>
+        <convert converter="hibernate3" match="com.eazytec.core.pojo.OaPosts"/>
+	    <convert converter="hibernate3" match="com.eazytec.core.pojo.OaMailInbox"/>
+	    <convert converter="hibernate3" match="com.eazytec.core.pojo.OaMailSend"/>
+	    <convert converter="hibernate3" match="com.eazytec.core.pojo.OaMailEmp"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaBookType"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaPostil"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaScheduleLog"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.SysApproveRecord"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.SysApproveSet"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.SysApproveSetDetail"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.SysApproveSetRange"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaVote"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaVoteOption"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaVoteStatus"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.SysWorksquad"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaRefisterout"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.SysParam"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaLeaveregistration">
+			<param name="exclude" value="historicProcessInstance,processDefinition"/>
+		</convert>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaTrsvel"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaOvevrtime"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.SysChecktime"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.HrmWorkrecord"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaTools"/>	
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaNotebook"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaNetdiskShare"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaNetdiskConfig"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaDesktopSet"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.HrmTimedrecord"/>
+		
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaNetmailSet"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaNetmailPerson"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaNetmailSendbox"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaNetmailInbox"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaNetmailUid"/>
+
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.FinPaymentsOut"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.FinCashInfo"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.FinItemInfo"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.FinPaymentsIncome"/>
+		
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.FinAccountDetail"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.FinBankInit"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.FinBankInfo"/>
+		
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaProjectArchive"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaProjectPlan"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaProjectPostil"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaProjectPro"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaProjectProMx"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaProjectProTemp"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaProjectProTempMx"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaProjectRealproTemp"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.OaProjectType"/>
+		
+		
+		<convert converter="hibernate3" match="org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity">
+			<param name="include" value="id,deploymentId,name,key,version,resourceName,diagramResourceName,suspensionState"></param>
+		</convert>
+		
+		<convert converter="hibernate3" match="org.activiti.engine.impl.persistence.entity.DeploymentEntity">
+			<param name="include" value="id,name,category,deploymentTime"></param>
+		</convert>
+		<convert converter="hibernate3" match="org.activiti.engine.impl.persistence.entity.ModelEntity">
+			<param name="include" value="id,revision,name,key,category,createTime,lastUpdateTime,version,metaInfo,deploymentId,editorSourceValueId,editorSourceExtraValueId"></param>
+		</convert>
+		
+		<convert converter="hibernate3" match="org.activiti.engine.impl.persistence.entity.GroupEntity"/>
+		<convert converter="hibernate3" match="org.activiti.engine.impl.persistence.entity.UserEntity"/>
+		<convert converter="hibernate3" match="org.activiti.engine.impl.persistence.entity.MembershipEntity"/>
+		
+		<convert converter="hibernate3" match="org.activiti.engine.impl.persistence.entity.ExecutionEntity">
+			<param name="include" value="id,processInstanceId,processDefinitionId,suspensionState,activityId"></param>
+		</convert>
+		
+		<convert converter="hibernate3" match="org.activiti.engine.impl.persistence.entity.TaskEntity">
+			<param name="include" value="id,revision,owner,assignee,parentTaskId,name,description,createTime,dueDate,suspensionState,executionId,processInstanceId,dueDate,taskDefinitionKey,eventName"></param>
+		</convert>
+	
+		<convert converter="hibernate3" match="org.activiti.engine.impl.persistence.entity.HistoricProcessInstanceEntity"/>
+		<convert converter="hibernate3" match="org.activiti.engine.impl.persistence.entity.HistoricTaskInstanceEntity"/>
+		<convert converter="hibernate3" match="org.activiti.engine.impl.persistence.entity.HistoricActivityInstanceEntity"/>
+		<convert converter="hibernate3" match="org.activiti.engine.impl.persistence.entity.HistoricVariableInstanceEntity"/>
+		<convert converter="hibernate3" match="org.activiti.engine.impl.persistence.entity.CommentEntity">
+			<param name="include" value="fullMessage"></param>
+		</convert>
+		
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.SysComponent"/>
+		<convert converter="hibernate3" match="com.eazytec.core.pojo.SysMethodShortcut"/>
+	</allow>
+</dwr>

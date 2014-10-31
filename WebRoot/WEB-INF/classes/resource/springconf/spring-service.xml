@@ -1,0 +1,631 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    
+    
+    <!--************************************************************************************-->
+    <!--************************************************************************************-->
+	<!--**********************                           ***********************************-->
+	<!--**********************         网络磁盘配置区开始                        ***********************************-->
+	<!--**********************                           ***********************************-->
+	<!--************************************************************************************-->
+    <!--************************************************************************************-->
+    
+	<bean name="fileAction" class="com.eazytec.common.netdisk.action.FileAction" scope="singleton">
+		<property name="fileService" ref="fileService" />
+		<property name="netdiskService" ref="netdiskService"></property>
+	</bean>
+	<bean name="fileService" class="com.eazytec.common.netdisk.action.FileService" >
+		<property name="fileHelper" ref="fileHelper" />
+		<property name="hrmEmployeeService" ref="hrmEmployeeService"></property>
+		<property name="netdiskService" ref="netdiskService"></property>
+	</bean>
+	<bean name="fileHelper" class="com.eazytec.common.netdisk.io.FileHelper" />
+	
+    <!--************************************************************************************-->
+	<!--**********************         网络磁盘配置区结束                        ***********************************-->
+	<!--************************************************************************************-->
+
+
+
+
+
+
+
+
+
+
+    <!--************************************************************************************-->
+    <!--************************************************************************************-->
+	<!--**********************                           ***********************************-->
+	<!--**********************         Dwr配置区开始                              ***********************************-->
+	<!--**********************                           ***********************************-->
+	<!--************************************************************************************-->
+    <!--************************************************************************************-->
+    
+	<bean id="dwrHrmEmployeeService" class="com.eazytec.web.controller.dwr.DwrHrmEmployeeService">
+		<property name="employeeinfoService" ref="hrmEmployeeService"/>
+	</bean>
+	<bean id="dwrSysProcessService" class="com.eazytec.web.controller.dwr.DwrSysProcessService">
+		<property name="sysProcessService" ref="sysProcessService"/>
+		<property name="userLoginService" ref="userLoginService"></property>
+	</bean>
+	<bean id="dwrCommonService" class="com.eazytec.web.controller.dwr.DwrCommonService">
+		<property name="sysProcessService" ref="sysProcessService"/>
+	</bean>
+	<bean id="dwrWorkArrangeService" class="com.eazytec.web.controller.dwr.DwrWorkArrangeService">
+		<property name="employeeinfoService" ref="hrmEmployeeService"/>
+		<property name="workArrangeService" ref="workArrangeService"></property>
+	</bean>
+	
+	<bean id="dwrOACompanyResourcesService" class="com.eazytec.web.controller.dwr.DwrOACompanyResourcesService">
+		<property name="cmpReService" ref="oaCompanyResourcesService"></property>
+	</bean>
+	<bean id="dwrOaNewsService" class="com.eazytec.web.controller.dwr.DwrOaNewsService">
+	    <property name="oaNewsService" ref="oaNewsService"></property>
+	    <property name="employeeinfoService" ref="hrmEmployeeService"/>
+	</bean>
+	<bean id="dwrOfficeResourcesService" class="com.eazytec.web.controller.dwr.DwrOfficeResourcesService">
+	    <property name="officeResourcesService" ref="officeResourcesService"></property>
+	    <property name="employeeinfoService" ref="hrmEmployeeService"/>
+	</bean>
+	<bean id="dwrOaCommunicationService" class="com.eazytec.web.controller.dwr.DwrOaCommunicationService">
+	    <property name="oaChartterService" ref="oaChartterService"></property>
+	    <property name="employeeinfoService" ref="hrmEmployeeService"/>
+	</bean>
+	<bean id="dwrMoblieSmsService" class="com.eazytec.web.controller.dwr.DwrMoblieSmsService">
+	    <property name="moblieSmsService" ref="moblieSmsService"></property>
+	</bean>
+	<bean id="dwrMailService" class="com.eazytec.web.controller.dwr.DwrMailService">
+	    <property name="mailService" ref="mailService"></property>
+	    <property name="employeeinfoService" ref="hrmEmployeeService"/>
+	</bean>
+	<bean id="dwrApproveProcessService" class="com.eazytec.web.controller.dwr.DwrApproveProcessService">
+		<property name="employeeinfoService" ref="hrmEmployeeService"></property>
+		<property name="approveService" ref="approveProcessService"></property>
+		<property name="repositoryService" ref="repositoryService"></property>
+		<property name="identityService" ref="identityService"></property>
+		<property name="runtimeService" ref="runtimeService"></property>
+		<property name="historyService" ref="historyService"></property>
+	</bean>
+	
+	<bean id="dwrPersonalOfficeSerivce" class="com.eazytec.web.controller.dwr.DwrPersonalOfficeSerivce">
+   		<property name="personalOfficeSerivce" ref="personalOfficeSerivce"></property>
+		<property name="employeeinfoService" ref="hrmEmployeeService"></property>
+	</bean>
+	
+	<bean id="dwrPersonalProcessSerivce" class="com.eazytec.web.controller.dwr.DwrPersonalProcessSerivce">
+   		<property name="personalOfficeSerivce" ref="personalOfficeSerivce"></property>
+		<property name="employeeinfoService" ref="hrmEmployeeService"></property>
+		<property name="taskService" ref="taskService"></property>
+		<property name="runtimeService" ref="runtimeService"></property>
+		<property name="repositoryService" ref="repositoryService"></property>
+		<property name="historyService" ref="historyService"></property>
+	</bean>
+	
+	<bean id="dwrOADesktopService" class="com.eazytec.web.controller.dwr.DwrOADesktopService">
+		<property name="oaDesktopService" ref="oaDesktopService"></property>
+		<property name="oaNewsService" ref="oaNewsService"></property>
+		<property name="personalOfficeService" ref="personalOfficeSerivce"></property>
+		<property name="workArrangeService" ref="workArrangeService"></property>
+		<property name="oaChartterService" ref="oaChartterService"></property>
+		<property name="cmpReService" ref="oaCompanyResourcesService"></property>
+		<property name="moblieSmsService" ref="moblieSmsService"></property>
+		<property name="mailService" ref="mailService"></property>
+		<property name="employeeinfoService" ref="hrmEmployeeService"></property>
+	</bean>
+	<bean id="dwrNetdiskService" class="com.eazytec.web.controller.dwr.DwrNetdiskService">
+   		<property name="netdiskService" ref="netdiskService"></property>
+	</bean>
+	<bean id="dwrSysComponentService" class="com.eazytec.web.controller.dwr.DwrSysComponentService">
+	   <property name="sysComponentService" ref="sysComponentService"/>
+	</bean>
+	
+	<!--************************************************************************************-->
+	<!--**********************         Dwr配置区结束                             ***********************************-->
+	<!--************************************************************************************-->
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+    <!--************************************************************************************-->
+    <!--************************************************************************************-->
+	<!--**********************                           ***********************************-->
+	<!--**********************         Service配置区开始                ***********************************-->
+	<!--**********************                           ***********************************-->
+	<!--************************************************************************************-->
+    <!--************************************************************************************-->
+    
+	<bean id="oaDesktopService" class="com.eazytec.core.service.OaDesktopSerivce">
+		<property name="hrmEmployeeDao" ref="hrmEmployeeDaoImpl"></property>
+		<property name="oaDesktopSetdao" ref="oaDesktopSetDaoImpl"></property>
+	</bean>
+	<bean id="userLoginService" class="com.eazytec.core.service.UserLoginService">
+		<property name="hrmEmployeeDao" ref="hrmEmployeeDaoImpl"></property>
+		<property name="hrmDepartmentDao" ref="hrmDepartmentDaoImpl"></property>
+		<property name="sysCompanyInfoDao" ref="sysCompanyInfoDaoImpl"></property>
+		<property name="sysCompanyMethodsDao" ref="sysCompanyMethodsDaoImpl"></property>
+		<property name="sysLogDao" ref="sysLogDaoImpl"></property>
+		<property name="sysUserInfoDao" ref="sysUserInfoDaoImpl"></property>
+		<property name="sysUserMethodsDao" ref="sysUserMethodsDaoImpl"></property>
+		<property name="sysMethodInfoDao" ref="sysMethodInfoDaoImpl"></property>
+		<property name="helpDao" ref="sysHelpDaoImpl"></property>
+		<property name="msgDao" ref="sysMsgDaoImpl"></property>
+		<property name="hrmPostDao" ref="hrmPostDaoImpl"></property>
+		<property name="roleDao" ref="sysRoleDaoImpl"></property>
+		<property name="rolebindDao" ref="sysRoleBindDaoImpl"></property>
+		<property name="roledetailDao" ref="sysRoleDetailDaoImpl"></property>
+		<property name="usergroupDao" ref="sysUserGroupDaoImpl"></property>
+		<property name="usergroupdetailDao" ref="sysUserGroupDetailDaoImpl"></property>
+		<property name="userviewDao" ref="sysUserViewDaoImpl"></property>
+		<property name="sysConfigDao" ref="sysConfigDaoImpl"></property>
+		<property name="sysParamDao" ref="sysParamDaoImpl"></property>
+	</bean>
+	<bean id="hrmEmployeeService" class="com.eazytec.core.service.HrmEmployeeService">
+		<property name="hrmEmployeeDao" ref="hrmEmployeeDaoImpl"></property>
+		<property name="hrmDepartmentDao" ref="hrmDepartmentDaoImpl"></property>
+		<property name="hrmPostDao" ref="hrmPostDaoImpl"></property>
+		<property name="hrmWorkareaDao" ref="hrmWorkareaDaoImpl"></property>
+		<property name="sysUserInfoDao" ref="sysUserInfoDaoImpl"></property>
+	</bean>
+	<bean id="sysProcessService" class="com.eazytec.core.service.SysProcessService">
+		<property name="sysLogDao" ref="sysLogDaoImpl"></property>
+		<property name="exceptionDao" ref="sysExceptionDaoImpl"></property>
+		<property name="sysHelpDao" ref="sysHelpDaoImpl"></property>
+		<property name="sysMsgDao" ref="sysMsgDaoImpl"></property>
+		<property name="sysColumnControlDao" ref="sysColumnControlDaoImpl"></property>
+		<property name="sysConfigDao" ref="sysConfigDaoImpl"></property>
+		<property name="sysMethodInfoDao" ref="sysMethodInfoDaoImpl"></property>
+		<property name="sysMethodHelpDao" ref="sysMethodHelpDaoImpl"></property>
+		<property name="sysLibraryInfoDao" ref="sysLibraryInfoDaoImpl"></property>
+		<property name="sysLibraryStandardDao" ref="sysLibraryStandardDaoImpl"></property>
+		<property name="sysAttachmentInfoDao" ref="sysAttachmentInfoDaoImpl"></property>
+		<property name="sysImageInfoDao" ref="sysImageInfoDaoImpl"></property>
+		<property name="sysUserInfoDao" ref="sysUserInfoDaoImpl"></property>
+		<property name="sysUserGroupDao" ref="sysUserGroupDaoImpl"></property>
+		<property name="sysUserGroupDetailDao" ref="sysUserGroupDetailDaoImpl"></property>
+		<property name="sysUserMethodsDao" ref="sysUserMethodsDaoImpl"></property>
+		<property name="hrmEmployeeDao" ref="hrmEmployeeDaoImpl"></property>
+		<property name="hrmDeptDao" ref="hrmDepartmentDaoImpl"></property>
+		<property name="sysRoleDao" ref="sysRoleDaoImpl"></property>
+		<property name="sysRoleDetailDao" ref="sysRoleDetailDaoImpl"></property>
+		<property name="sysRoleBindDao" ref="sysRoleBindDaoImpl"></property>
+		<property name="hrmPostDao" ref="hrmPostDaoImpl"></property>
+		<property name="sysCompanyInfoDao" ref="sysCompanyInfoDaoImpl"></property>
+		<property name="sysCompanyMethodsDao" ref="sysCompanyMethodsDaoImpl"></property>
+		<property name="sysParamDao" ref="sysParamDaoImpl"></property>
+		<property name="identityService" ref="identityService"></property>
+		<property name="sysMethodShortcutDao" ref="sysMethodShortcutDaoImpl"></property>
+	</bean>
+	
+	<bean id="oaCompanyResourcesService" class="com.eazytec.core.service.OaCompanyResourcesService">
+		<property name="oaWarehouseDao" ref="oaWarehouseDaoImpl"></property>
+		<property name="oaWareTypeDao" ref="oaWareTypeDaoImpl"></property>
+		<property name="oaWaretypeRangeDao" ref="oaWaretypeRangeDaoImpl"></property>
+		<property name="hrmEmployeeDao" ref="hrmEmployeeDaoImpl"></property>
+		<property name="oaFormsDao" ref="oaFormsDaoImpl"></property>
+		<property name="oaJournalsTypeDao" ref="oaJournalsTypeDaoImpl"></property>
+		<property name="oaJournalsDao" ref="oaJournalsDaoImpl"></property>
+		<property name="hrmDeptDao" ref="hrmDepartmentDaoImpl"></property>
+		<property name="oaAlbumDao" ref="oaAlbumDaoImpl"></property>
+		<property name="oaPhotoDao" ref="oaPhotoDaoImpl"></property>
+		<property name="libraryInfoDao" ref="sysLibraryInfoDaoImpl"></property>
+		<property name="oaRegulationsDao" ref="oaRegulationsDaoImpl"></property>
+	</bean>
+	
+	<bean id="fileProcessService" class="com.eazytec.core.service.FileProcessService">
+		<property name="sysImageInfodao" ref="sysImageInfoDaoImpl"></property>
+		<property name="sysAttachmentDao" ref="sysAttachmentInfoDaoImpl"></property>
+	</bean>
+	
+	<bean id="workArrangeService" class="com.eazytec.core.service.WorkArrangeService">
+		<property name="oaWorkLogDao" ref="oaWorkLogDaoImpl"></property>
+		<property name="oaCalenderDao" ref="oaCalenderDaoImpl"></property>
+	</bean>
+	<bean id="oaNewsService" class="com.eazytec.core.service.OaNewsService">
+	    <property name="oaAnnouncementDao" ref="oaAnnouncementDaoImpl"></property>
+	    <property name="oaNoticeDao" ref="oaNoticeDaoImpl"></property>
+	    <property name="oaAdversariaDao" ref="oaAdversariaDaoImpl"></property>
+	    <property name="sysLibraryInfoDao" ref="sysLibraryInfoDaoImpl"></property>
+	</bean>
+	<bean id="officeResourcesService" class="com.eazytec.core.service.OfficeResourcesService">
+	    <property name="oaBoardroomDao" ref="oaBoardroomDaoImpl"></property>
+	    <property name="oaMeetapplyDao" ref="oaMeetapplyDaoImpl"></property>
+	    <property name="oaSummaryDao" ref="oaSummaryDaoImpl"></property>
+	    <property name="oaCarDao" ref="oaCarDaoImpl"></property>
+		<property name="oaBookDao" ref="oaBookDaoImpl"></property>
+		<property name="oaBookBrDao" ref="oaBookBrDaoImpl"></property>
+		<property name="oaBookTypeDao" ref="oaBookTypeDaoImpl"></property>
+		<property name="oaCarApplyDao" ref="oaCarApplyDaoImpl"></property>
+		<property name="oacarMaintaindao" ref="oaCarMaintainDaoImpl"></property>
+		<property name="sysLibraryInfoDao" ref="sysLibraryInfoDaoImpl"></property>
+	</bean>
+
+	<bean id="oaChartterService" class="com.eazytec.core.service.OaChartterService">
+	    <property name="oaChattersDao" ref="oaChattersDaoImpl"></property>
+	    <property name="oaChatGroupsDao" ref="oaChatGroupsDaoImpl"></property>
+	    <property name="sysImageInfoDao" ref="sysImageInfoDaoImpl"></property>
+	    <property name="oaForumsDao" ref="oaForumsDaoImpl"></property>
+	    <property name="oaPostsDao" ref="oaPostsDaoImpl"></property>
+	    <property name="oaVoteDao" ref="oaVoteDaoImpl"></property>
+	    <property name="oaVoteOptionDao" ref="oaVoteOptionDaoImpl"></property>
+	    <property name="oaVoteStatusDao" ref="oaVoteStatusDaoImpl"></property>
+	    <property name="sysLibraryInfoDao" ref="sysLibraryInfoDaoImpl"></property>
+	</bean>
+	<bean id="moblieSmsService" class="com.eazytec.core.service.MoblieSmsService">
+	    <property name="oaSmsSendDao" ref="oaSmsSendDaoImpl"></property>
+	    <property name="oaSmsInboxDao" ref="oaSmsInboxDaoImpl"></property>
+	    <property name="hrmEmployeeDao" ref="hrmEmployeeDaoImpl"></property>
+	</bean>
+	<bean id="mailService" class="com.eazytec.core.service.MailService">
+	    <property name="oaMailEmpDao" ref="oaMailEmpDaoImpl"></property>
+	    <property name="oaMailInboxDao" ref="oaMailInboxDaoImpl"></property>
+	    <property name="oaMailSendDao" ref="oaMailSendDaoImpl"></property>
+	    <property name="employeeDao" ref="hrmEmployeeDaoImpl"></property>
+	    <property name="oaNetmailSetDao" ref="oaNetmailSetDaoImpl"></property>
+	    <property name="oaNetmailPersonDao" ref="oaNetmailPersonDaoImpl"></property>
+	    <property name="oaNetmailSendboxDao" ref="oaNetmailSendboxDaoImpl"></property>
+	    <property name="oaNetmailInboxDao" ref="oaNetmailInboxDaoImpl"></property>
+	    <property name="oaNetmailUidDao" ref="oaNetmailUidDaoImpl"></property>
+	</bean>
+	
+	<bean id="approveProcessService" class="com.eazytec.core.service.ApproveProcessService">
+		<property name="hrmEmployeeDao" ref="hrmEmployeeDaoImpl"></property>
+		<property name="hrmDepartmentDao" ref="hrmDepartmentDaoImpl"></property>
+		<property name="sysUserInfoDao" ref="sysUserInfoDaoImpl"></property>
+	</bean>
+	<bean id="personalOfficeSerivce" class="com.eazytec.core.service.PersonalOfficeSerivce">
+	   <property name="oaLeaveregistrationDao" ref="oaLeaveregistrationDaoImpl"></property>
+	   <property name="oaTrsvelDao" ref="oaTrsvelDaoImpl"></property>
+	   <property name="oaToolsDao" ref="oaToolsDaoImpl"></property>
+	   <property name="librayInfoDao" ref="sysLibraryInfoDaoImpl"></property>
+	   <property name="oaNotebookDao" ref="oaNotebookDaoImpl"></property>
+	   <property name="hrmTimedrecordDao" ref="hrmTimedrecordDaoImpl"></property>
+	   <property name="identityService" ref="identityService"></property>
+	   <property name="runtimeService" ref="runtimeService"></property>
+	</bean>
+	<bean id="netdiskService" class="com.eazytec.core.service.NetdiskService">
+	   <property name="oaNetdiskShareDao" ref="oaNetdiskShareDaoImpl"></property>
+	   <property name="oaNetdiskConfigDao" ref="oaNetdiskConfigDaoImpl"></property>
+	   <property name="hrmEmployeeDao" ref="hrmEmployeeDaoImpl"></property>
+	   <property name="hrmDepartmentDao" ref="hrmDepartmentDaoImpl"></property>
+	</bean>
+	<bean id="sysComponentService" class="com.eazytec.core.service.SysComponentService">
+	   <property name="sysComponentDao" ref="sysComponentDaoImpl"></property>
+	</bean>
+	
+	<!--************************************************************************************-->
+	<!--**********************         Service配置区结束                ***********************************-->
+	<!--************************************************************************************-->	
+
+
+
+
+
+
+
+
+
+
+
+    <!--************************************************************************************-->
+    <!--************************************************************************************-->
+	<!--**********************                           ***********************************-->
+	<!--**********************         Dao配置区开始                              ***********************************-->
+	<!--**********************                           ***********************************-->
+	<!--************************************************************************************-->
+    <!--************************************************************************************-->
+    
+	<bean id="hrmWorkareaDaoImpl" class="com.eazytec.core.daoimpl.HrmWorkareaDaoImpl">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="sysCountryDaoImpl" class="com.eazytec.core.daoimpl.SysCountryDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="sysProvinceDaoImpl" class="com.eazytec.core.daoimpl.SysProvinceDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="sysDistrictDaoImpl" class="com.eazytec.core.daoimpl.SysDistrictDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="sysAttachmentInfoDaoImpl" class="com.eazytec.core.daoimpl.SysAttachmentInfoDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="sysMethodInfoDaoImpl" class="com.eazytec.core.daoimpl.SysMethodInfoDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="sysMethodHelpDaoImpl" class="com.eazytec.core.daoimpl.SysMethodHelpDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="sysCompanyMethodsDaoImpl" class="com.eazytec.core.daoimpl.SysCompanyMethodsDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="sysMsgDaoImpl" class="com.eazytec.core.daoimpl.SysMsgDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="sysHelpDaoImpl" class="com.eazytec.core.daoimpl.SysHelpDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="sysLogDaoImpl" class="com.eazytec.core.daoimpl.SysLogDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="sysErrorDaoImpl" class="com.eazytec.core.daoimpl.SysErrorDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="sysExceptionDaoImpl" class="com.eazytec.core.daoimpl.SysExceptionDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="sysUserInfoDaoImpl" class="com.eazytec.core.daoimpl.SysUserInfoDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="sysColumnControlDaoImpl" class="com.eazytec.core.daoimpl.SysColumnControlDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="sysImageInfoDaoImpl" class="com.eazytec.core.daoimpl.SysImageInfoDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="hrmPostDaoImpl" class="com.eazytec.core.daoimpl.HrmPostDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="hrmEmployeeDaoImpl" class="com.eazytec.core.daoimpl.HrmEmployeeDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="sysCompanyInfoDaoImpl" class="com.eazytec.core.daoimpl.SysCompanyInfoDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="sysUserMethodsDaoImpl" class="com.eazytec.core.daoimpl.SysUserMethodsDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="sysUserGroupDaoImpl" class="com.eazytec.core.daoimpl.SysUserGroupDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="sysUserGroupDetailDaoImpl" class="com.eazytec.core.daoimpl.SysUserGroupDetailDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="sysRoleDaoImpl" class="com.eazytec.core.daoimpl.SysRoleDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="sysRoleDetailDaoImpl" class="com.eazytec.core.daoimpl.SysRoleDetailDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="sysRoleBindDaoImpl" class="com.eazytec.core.daoimpl.SysRoleBindDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="sysLibraryInfoDaoImpl" class="com.eazytec.core.daoimpl.SysLibraryInfoDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="sysLibraryStandardDaoImpl" class="com.eazytec.core.daoimpl.SysLibraryStandardDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="sysUserViewDaoImpl" class="com.eazytec.core.daoimpl.SysUserViewDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="hrmDepartmentDaoImpl" class="com.eazytec.core.daoimpl.HrmDepartmentDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="sysConfigDaoImpl" class="com.eazytec.core.daoimpl.SysConfigDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+    <bean id="oaWarehouseDaoImpl" class="com.eazytec.core.daoimpl.OaWarehouseDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="oaWareTypeDaoImpl" class="com.eazytec.core.daoimpl.OaWareTypeDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="oaWaretypeRangeDaoImpl" class="com.eazytec.core.daoimpl.OaWaretypeRangeDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+    <bean id="oaAnnouncementDaoImpl" class="com.eazytec.core.daoimpl.OaAnnouncementDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="oaBoardroomDaoImpl" class="com.eazytec.core.daoimpl.OaBoardroomDaoImpl">
+       <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="oaNoticeDaoImpl" class="com.eazytec.core.daoimpl.OaNoticeDaoImpl">
+       <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="oaWorkLogDaoImpl" class="com.eazytec.core.daoimpl.OaWorkLogDaoImpl">
+       <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="oaFormsDaoImpl" class="com.eazytec.core.daoimpl.OaFormsDaoImpl">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+    <bean id="oaAdversariaDaoImpl" class="com.eazytec.core.daoimpl.OaAdversariaDaoImpl">
+       <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="oaMeetapplyDaoImpl" class="com.eazytec.core.daoimpl.OaMeetapplyDaoImpl">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="oaSummaryDaoImpl" class="com.eazytec.core.daoimpl.OaSummaryDaoImpl">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="oaCarDaoImpl" class="com.eazytec.core.daoimpl.OaCarDaoImpl">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="oaJournalsTypeDaoImpl" class="com.eazytec.core.daoimpl.OaJournalsTypeDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="oaJournalsDaoImpl" class="com.eazytec.core.daoimpl.OaJournalsDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="oaCalenderDaoImpl" class="com.eazytec.core.daoimpl.OaCalenderDaoImpl">
+         <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="oaCarUseDaoImpl" class="com.eazytec.core.daoimpl.OaCarUseDaoImpl">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="oaCarMaintenDaoImpl" class="com.eazytec.core.daoimpl.OaCarMaintenDaoImpl">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="oaAlbumDaoImpl" class="com.eazytec.core.daoimpl.OaAlbumDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="oaPhotoDaoImpl" class="com.eazytec.core.daoimpl.OaPhotoDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="oaChattersDaoImpl" class="com.eazytec.core.daoimpl.OaChattersDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="oaChatGroupsDaoImpl" class="com.eazytec.core.daoimpl.OaChatGroupsDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+	<bean id="oaSmsSendDaoImpl" class="com.eazytec.core.daoimpl.OaSmsSendDaoImpl">
+         <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="oaSmsInboxDaoImpl" class="com.eazytec.core.daoimpl.OaSmsInboxDaoImpl">
+         <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="oaBookDaoImpl" class="com.eazytec.core.daoimpl.OaBookDaoImpl">
+         <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+	<bean id="oaRegulationsDaoImpl" class="com.eazytec.core.daoimpl.OaRegulationsDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="oaBookBrDaoImpl" class="com.eazytec.core.daoimpl.OaBookBrDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+	<bean id="oaForumsDaoImpl" class="com.eazytec.core.daoimpl.OaForumsDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="oaPostsDaoImpl" class="com.eazytec.core.daoimpl.OaPostsDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="oaMailInboxDaoImpl" class="com.eazytec.core.daoimpl.OaMailInboxDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="oaMailSendDaoImpl" class="com.eazytec.core.daoimpl.OaMailSendDaoImpl">
+         <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="oaMailEmpDaoImpl" class="com.eazytec.core.daoimpl.OaMailEmpDaoImpl">
+         <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+	<bean id="oaBookTypeDaoImpl" class="com.eazytec.core.daoimpl.OaBookTypeDaoImpl">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="oaVoteDaoImpl" class="com.eazytec.core.daoimpl.OaVoteDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="oaVoteOptionDaoImpl" class="com.eazytec.core.daoimpl.OaVoteOptionDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="oaVoteStatusDaoImpl" class="com.eazytec.core.daoimpl.OaVoteStatusDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="oaCarMaintainDaoImpl" class="com.eazytec.core.daoimpl.OaCarMaintainDaoImpl">
+	 <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="oaCarApplyDaoImpl" class="com.eazytec.core.daoimpl.OaCarApplyDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="sysParamDaoImpl" class="com.eazytec.core.daoimpl.SysParamDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="oaLeaveregistrationDaoImpl" class="com.eazytec.core.daoimpl.OaLeaveregistrationDaoImpl">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="oaTrsvelDaoImpl" class="com.eazytec.core.daoimpl.OaTrsvelDaoImpl">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="oaToolsDaoImpl" class="com.eazytec.core.daoimpl.OaToolsDaoImpl">
+   		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="oaNetdiskShareDaoImpl" class="com.eazytec.core.daoimpl.OaNetdiskShareDaoImpl">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+	<bean id="oaNetdiskConfigDaoImpl" class="com.eazytec.core.daoimpl.OaNetdiskConfigDaoImpl">
+    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="oaDesktopSetDaoImpl" class="com.eazytec.core.daoimpl.OaDesktopSetDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="oaNotebookDaoImpl" class="com.eazytec.core.daoimpl.OaNotebookDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="hrmTimedrecordDaoImpl" class="com.eazytec.core.daoimpl.HrmTimedrecordDaoImpl">
+   		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<bean id="oaNetmailSetDaoImpl" class="com.eazytec.core.daoimpl.OaNetmailSetDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="oaNetmailPersonDaoImpl" class="com.eazytec.core.daoimpl.OaNetmailPersonDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="oaNetmailSendboxDaoImpl" class="com.eazytec.core.daoimpl.OaNetmailSendboxDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="oaNetmailInboxDaoImpl" class="com.eazytec.core.daoimpl.OaNetmailInboxDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="oaNetmailUidDaoImpl" class="com.eazytec.core.daoimpl.OaNetmailUidDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="sysComponentDaoImpl" class="com.eazytec.core.daoimpl.SysComponentDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="sysMethodShortcutDaoImpl" class="com.eazytec.core.daoimpl.SysMethodShortcutDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<!--************************************************************************************-->
+	<!--**********************        Dao配置区结束                                 ***********************************-->
+	<!--************************************************************************************-->
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- 拦截机制配置 -->
+	
+	<!-- 方法拦截 -->
+	<!-- 
+	<bean id="simpleAdvice" class="com.eazytec.web.filter.springaop.SimpleAdvice"/>
+	 -->
+	
+	<!-- 异常捕捉 -->
+	<!-- 
+	<bean id="exceptionCatcherAdvice" class="com.eazytec.web.filter.springaop.ExceptionCatcherAdvice">
+		<property name="sysExceptionDao" ref="sysExceptionDaoImpl"></property>
+	</bean>
+	 -->
+	
+	<!-- 拦截配置开始 使用BeanNameAutoProxyCreator -->
+	<!-- 
+	<bean id="simpleBeanProxy" class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+		<property name="beanNames">
+			<list>
+				<value>dwr*Service</value>
+			</list>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>simpleAdvice</value>
+				<value>exceptionCatcherAdvice</value>
+			</list>
+		</property>
+	</bean>
+	 -->
+	<!-- 拦截配置结束 -->
+	
+	
+	
+	<!-- 测试配置 -->
+	<bean id="testService" class="test.service.TestService">
+	   <property name="sysHelpDao" ref="sysHelpDaoImpl"></property>
+	   <property name="sysMsgDao" ref="sysMsgDaoImpl"></property>
+	</bean>
+</beans>

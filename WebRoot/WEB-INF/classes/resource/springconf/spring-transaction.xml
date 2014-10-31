@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<bean id="defaultTxAttribute" class="org.springframework.transaction.interceptor.NameMatchTransactionAttributeSource">
+		<property name="properties">
+			<props>
+				<!-- 
+				<prop key="*">PROPAGATION_REQUIRED</prop> 
+				-->
+				<!-- 查询方法，只读 -->
+				<prop key="list*">PROPAGATION_REQUIRED,readOnly</prop> 
+				<prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>               
+				<prop key="find*">PROPAGATION_REQUIRED,readOnly</prop>            
+     			<prop key="load*">PROPAGATION_REQUIRED,readOnly</prop>
+				<!-- 其他事务 -->
+				<prop key="start*">PROPAGATION_REQUIRED</prop>
+				<prop key="save*">PROPAGATION_REQUIRED</prop>
+				<prop key="add*">PROPAGATION_REQUIRED</prop>
+				<prop key="delete*">PROPAGATION_REQUIRED</prop>
+				<prop key="move*">PROPAGATION_REQUIRED</prop>
+				<prop key="remove*">PROPAGATION_REQUIRED</prop>
+				<prop key="update*">PROPAGATION_REQUIRED</prop>
+				<!-- 
+				<prop key="add*">PROPAGATION_REQUIRED,
+								 +com.frin.module.exception.CommitException, 抛出这种异常时，事务也提交 
+								 -com.frin.module.exception.RollbackException  抛出这种异常时，事务不提交 
+				</prop>
+				<prop key="get*">PROPAGATION_REQUIRED</prop>
+				<prop key="delete*">PROPAGATION_REQUIRED</prop>
+				 -->
+			</props>
+		</property>
+	</bean>
+
+	<bean id="defalutTxInterceptor" class="org.springframework.transaction.interceptor.TransactionInterceptor">
+		<property name="transactionManager" ref="transactionManager"/>
+		<property name="transactionAttributeSource" ref="defaultTxAttribute"/>
+	</bean>
+	
+	<bean id="serviceProxyCreator" class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+		<property name="interceptorNames">
+			<list>
+				<idref bean="defalutTxInterceptor"/>
+			</list>
+		</property>
+		<property name="beanNames">
+			<list>
+				<idref bean="userLoginService"/>
+				<idref bean="sysProcessService"/>
+				<idref bean="oaCompanyResourcesService"/>
+				<idref bean="mailService"/>
+				<idref bean="approveProcessService"/>
+				<idref bean="personalOfficeSerivce"/>
+				<idref bean="testService"/>
+			</list>
+		</property>
+		<property name="proxyTargetClass">
+			<value>true</value> <!-- 允许不访问接口直接访问类，默认为false，只允许以接口形式调用 -->
+		</property>
+	</bean>
+</beans>

@@ -1,0 +1,70 @@
+#splitterContainer {
+height:100%;width:100%;margin:0;padding:0;
+}
+
+#leftPane{
+float:left;height:100%;
+overflow: hidden;width:15%;
+}
+#rightPane{
+float:right;height:100%;
+overflow: hidden;width:84.5%;
+}
+
+#cenPane{
+float:left;height:100%;
+background:#B0D8F3;
+cursor:hand;
+position:relative;
+}
+
+#cenPaneButton{
+height:51px;width:100%;position:absolute;top:40%;left:0px;
+background:url(img/split-buttons.gif) no-repeat;
+}
+
+#leftSplitterContainer{
+width:100%;height:100%;
+} 
+
+#leftTopPane{
+width:100%;height:70%;overflow:hidden;
+}
+
+#leftBottomPane{
+width:100%;height:22%;overflow:hidden;
+}
+
+
+/* Splitbar styles; these are the default class names and required styles */
+.splitbarV {
+float:left;width:6px;height:100%;
+line-height:0px;font-size:0px;
+border-left:solid 1px #9cbdff;border-right:solid 1px #9cbdff;
+background:#cbe1fb url(img/panev.gif) 0% 50%;
+}
+.splitbarH {
+height:6px;text-align:left;line-height:0px;font-size:0px;
+border-top:solid 1px #9cbdff;border-bottom:solid 1px #9cbdff;
+background:#cbe1fb url(img/paneh.gif) 50% 0%;
+}
+
+.splitbuttonV{
+margin-top:-41px;margin-left:-4px;top:50%;position:relative;
+height:83px;width:10px;
+background:transparent url(img/panevc.gif) 10px 50%;
+}
+.splitbuttonV.invert{
+margin-left:0px;background:transparent url(img/panevc.gif) 0px 50%;
+}
+.splitbuttonH{
+margin-left:-41px;left:50%;position:relative;
+height:10px !important;width:83px;
+background:transparent url(img/panehc.gif) 50% 0px;
+}
+.splitbuttonH.invert{
+margin-top:-4px;background:transparent url(img/panehc.gif) 50% -10px;
+}
+.splitbarV.working,.splitbarH.working,.splitbuttonV.working,.splitbuttonH.working{
+ -moz-opacity:.50; filter:alpha(opacity=50); opacity:.50;
+}

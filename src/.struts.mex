@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Struts2Diagram version="2.0">
+  <package name="simple" location="10,745" size="460,71">
+    <action name="download" location="16,24" size="150,41">
+      <result name="success" />
+    </action>
+    <action name="createMiniPic" location="261,25" size="150,40" />
+  </package>
+  <package name="json" location="10,10" size="460,631">
+    <action name="getPersonalSpace" location="16,24" size="150,41">
+      <result name="success" />
+    </action>
+    <action name="getDirectories" location="261,24" size="150,41">
+      <result name="success" />
+    </action>
+    <action name="getShareDirectories" location="16,164" size="150,41">
+      <result name="success" />
+    </action>
+    <action name="getFiles" location="261,164" size="150,41">
+      <result name="success" />
+    </action>
+    <action name="uploadFiles" location="16,294" size="150,62">
+      <result name="success" />
+      <result name="input" />
+    </action>
+    <action name="createFolder" location="261,304" size="150,41">
+      <result name="success" />
+    </action>
+    <action name="deleteFiles" location="16,444" size="150,41">
+      <result name="success" />
+    </action>
+    <action name="compressionFiles" location="261,444" size="150,41">
+      <result name="success" />
+    </action>
+    <action name="decompressionFiles" location="16,584" size="150,41">
+      <result name="success" />
+    </action>
+    <action name="renameFolder" location="261,584" size="150,41">
+      <result name="success" />
+    </action>
+  </package>
+  <include file="struts-default.xml" location="585,731" size="150,30" />
+</Struts2Diagram>
+

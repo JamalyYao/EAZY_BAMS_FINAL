@@ -1,0 +1,12 @@
+eclipse.preferences.version=1
+encoding//WebRoot/css/normal.css=UTF-8
+encoding//WebRoot/css/print_style.css=UTF-8
+encoding//WebRoot/erp/tabs/systabs.html=UTF-8
+encoding//WebRoot/example/backend.html=UTF-8
+encoding//WebRoot/js/MSClass.js=GBK
+encoding//WebRoot/js/split2/style.css=UTF-8
+encoding//src/com/eazytec/web/servlet/code/CreateDwrAndService.java=UTF-8
+encoding//src/com/eazytec/web/servlet/code/CreatePage.java=UTF-8
+encoding//src/com/eazytec/web/servlet/code/CreatePojoAndDao.java=UTF-8
+encoding//src/com/eazytec/web/servlet/code/SaveFile.java=UTF-8
+encoding/<project>=UTF-8

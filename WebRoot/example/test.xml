@@ -1,0 +1,58 @@
+
+<chart palette='3' subCaption='' caption='产品库存统计' xAxisName='产品名称'
+	yAxisName='库存数量' decimals='2' showSum='0' numberPrefix=''
+	numberSuffix='元' baseFont='宋体' baseFontSize='12' shownames='1'
+	showvalues='1' bgColor='99CCFF,FFFFFF' bgAlpha='40,100' bgRatio='0,100'
+	showBorder='1' useRoundEdges='1' legendBorderAlpha='0'>
+	<categories>
+		<category label='机械类' />
+		<category label='药物类' />
+		<category label='工具类' />
+		<category label='机械类' />
+		<category label='药物类' />
+		<category label='机械类' />
+		<category label='民用客机' />
+		<category label='工具类' />
+		<category label='服务类' />
+		<category label='食物类' />
+		<category label='轰炸机' />
+		<category label='制造材料' />
+		<category label='化肥原料' />
+		<category label='工具类' />
+		<category label='消耗类' />
+		<category label='非消耗类' />
+		<category label='原材料' />
+		<category label='原材料' />
+		<category label='服装类' />
+	</categories>
+	<dataset seriesName='库存数量' showValues='1'>
+		<set value='110545409' tooltext='产品 [螺丝钉] 的库存总数为:110545409个' />
+		<set value='9999542' tooltext='产品 [阿莫西林胶囊] 的库存总数为:9999542箱' />
+		<set value='270' tooltext='产品 [斧头] 的库存总数为:270件' />
+		<set value='200' tooltext='产品 [钢板] 的库存总数为:200个' />
+		<set value='120' tooltext='产品 [感冒药] 的库存总数为:120个' />
+		<set value='100' tooltext='产品 [搅拌机] 的库存总数为:100台' />
+		<set value='99' tooltext='产品 [喷气客机] 的库存总数为:99个' />
+		<set value='54' tooltext='产品 [电脑] 的库存总数为:54个' />
+		<set value='49' tooltext='产品 [耳机] 的库存总数为:49个' />
+		<set value='42' tooltext='产品 [大熊猫] 的库存总数为:42台' />
+		<set value='15' tooltext='产品 [歼十轰炸机] 的库存总数为:15个' />
+		<set value='10' tooltext='产品 [特殊钢材] 的库存总数为:10个' />
+		<set value='5' tooltext='产品 [碳酸钾] 的库存总数为:5千克' />
+		<set value='3' tooltext='产品 [家具] 的库存总数为:3个' />
+		<set value='2' tooltext='产品 [笔] 的库存总数为:2个' />
+		<set value='1' tooltext='产品 [电话] 的库存总数为:1台' />
+		<set value='1' tooltext='产品 [材料1] 的库存总数为:1个' />
+		<set value='1' tooltext='产品 [材料2] 的库存总数为:1个' />
+		<set value='0' tooltext='产品 [背靠背服装] 的库存总数为:0件' />
+	</dataset>
+</chart>
+<chart palette='3' subCaption='统计时间：2010-12-01至2010-12-23'
+	caption='采购付款统计' xAxisName='结算单号' yAxisName='金额（元）' decimals='2'
+	showSum='0' numberPrefix='' numberSuffix='元' baseFont='宋体'
+	baseFontSize='12' shownames='1' showvalues='1' bgColor='99CCFF,FFFFFF'
+	bgAlpha='40,100' bgRatio='0,100' showBorder='1' useRoundEdges='1'
+	legendBorderAlpha='0'>
+	
+</chart>
+
